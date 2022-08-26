@@ -1,0 +1,133 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=dataset-link
+-->
+<!-- saved from url=(0013)about:internet -->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+
+<head>
+          <meta charset="utf-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+
+<body style="height: 100%; margin: 0">
+          <div id="container" style="height: 100%"></div>
+
+
+          <script type="text/javascript"
+                    src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+          <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/extension/dataTool.min.js"></script>
+  -->
+          <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+          <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+          <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+          <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/extension/bmap.min.js"></script>
+  -->
+
+          <script type="text/javascript">
+                    var dom = document.getElementById('container');
+                    var myChart = echarts.init(dom, null, {
+                              renderer: 'canvas',
+                              useDirtyRect: false
+                    });
+                    var app = {};
+
+                    var option;
+
+                    setTimeout(function () {
+                              option = {
+                                        legend: {},
+                                        tooltip: {
+                                                  trigger: 'axis',
+                                                  showContent: false
+                                        },
+                                        dataset: {
+                                                  source: [
+
+                                                            ['Week', '2022-05-08', '2022-05-15', '2022-05-22', '2022-05-29', '2022-06-05', '2022-06-12', '2022-06-19', '2022-06-26', '2022-07-03', '2022-07-10', '2022-07-17', '2022-07-24'],
+                                                            ['Negative', 5, 2, 2260, 3413, 2905, 5417, 4567, 4175, 6415, 5832, 5327, 34822],
+                                                            ['Neutral', 0, 1, 3081, 5217, 4142, 7598, 5893, 6053, 10141, 8993, 7512, 29612],
+                                                            ['Positive', 1, 5, 1231, 1866, 1922, 3709, 2681, 2633, 3513, 3151, 3071, 11821],
+                                                  ]
+                                        },
+                                        xAxis: { type: 'category' },
+                                        yAxis: { gridIndex: 0 },
+                                        grid: { top: '55%' },
+                                        series: [
+                                                  {
+                                                            type: 'line',
+                                                            smooth: true,
+                                                            seriesLayoutBy: 'row',
+                                                            emphasis: { focus: 'series' }
+                                                  },
+                                                  {
+                                                            type: 'line',
+                                                            smooth: true,
+                                                            seriesLayoutBy: 'row',
+                                                            emphasis: { focus: 'series' }
+                                                  },
+                                                  {
+                                                            type: 'line',
+                                                            smooth: true,
+                                                            seriesLayoutBy: 'row',
+                                                            emphasis: { focus: 'series' }
+                                                  },
+                                                  {
+                                                            type: 'pie',
+                                                            id: 'pie',
+                                                            radius: '30%',
+                                                            center: ['50%', '25%'],
+                                                            emphasis: {
+                                                                      focus: 'self'
+                                                            },
+                                                            label: {
+                                                                      formatter: '{b}: {@Week} ({d}%)'
+                                                            },
+                                                            encode: {
+                                                                      itemName: 'Week',
+                                                                      value: '2022-05-08',
+                                                                      tooltip: '2022-05-08'
+                                                            }
+                                                  }
+                                        ]
+                              };
+                              myChart.on('updateAxisPointer', function (event) {
+                                        const xAxisInfo = event.axesInfo[0];
+                                        if (xAxisInfo) {
+                                                  const dimension = xAxisInfo.value + 1;
+                                                  myChart.setOption({
+                                                            series: {
+                                                                      id: 'pie',
+                                                                      label: {
+                                                                                formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+                                                                      },
+                                                                      encode: {
+                                                                                value: dimension,
+                                                                                tooltip: dimension
+                                                                      }
+                                                            }
+                                                  });
+                                        }
+                              });
+                              myChart.setOption(option);
+                    });
+
+                    if (option && typeof option === 'object') {
+                              myChart.setOption(option);
+                    }
+
+                    window.addEventListener('resize', myChart.resize);
+          </script>
+</body>
+
+</html>

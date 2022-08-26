@@ -1,0 +1,141 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=line-marker
+-->
+<!-- saved from url=(0013)about:internet -->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+
+<head>
+          <meta charset="utf-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+
+<body style="height: 100%; margin: 0">
+          <div id="container" style="height: 100%"></div>
+
+
+          <script type="text/javascript"
+                    src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+          <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/extension/dataTool.min.js"></script>
+  -->
+          <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+          <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+          <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+          <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/extension/bmap.min.js"></script>
+  -->
+
+          <script type="text/javascript">
+                    var dom = document.getElementById('container');
+                    var myChart = echarts.init(dom, null, {
+                              renderer: 'canvas',
+                              useDirtyRect: false
+                    });
+                    var app = {};
+
+                    var option;
+
+                    option = {
+                              title: {
+                                        text: 'Daily Sentiment'
+                              },
+                              tooltip: {
+                                        trigger: 'axis'
+                              },
+                              legend: {},
+                              toolbox: {
+                                        show: true,
+                                        feature: {
+                                                  dataZoom: {
+                                                            yAxisIndex: 'none'
+                                                  },
+                                                  dataView: { readOnly: false },
+                                                  magicType: { type: ['line', 'bar'] },
+                                                  restore: {},
+                                                  saveAsImage: {}
+                                        }
+                              },
+                              xAxis: {
+                                        type: 'category',
+                                        boundaryGap: false,
+                                        data: ["2022-05-18", "2022-05-19", "2022-05-20", "2022-05-21", "2022-05-22", "2022-05-23", "2022-05-24", "2022-05-25", "2022-05-26", "2022-05-27", "2022-05-28", "2022-05-29", "2022-05-30", "2022-05-31", "2022-06-01", "2022-06-02", "2022-06-03", "2022-06-04", "2022-06-05", "2022-06-06", "2022-06-07", "2022-06-08", "2022-06-09", "2022-06-10", "2022-06-11", "2022-06-12", "2022-06-13", "2022-06-14", "2022-06-15", "2022-06-16", "2022-06-17", "2022-06-18", "2022-06-19", "2022-06-20", "2022-06-21", "2022-06-22", "2022-06-23", "2022-06-24", "2022-06-25", "2022-06-26", "2022-06-27", "2022-06-28", "2022-06-29", "2022-06-30", "2022-07-01", "2022-07-02", "2022-07-03", "2022-07-04", "2022-07-05", "2022-07-06", "2022-07-07", "2022-07-08", "2022-07-09", "2022-07-10", "2022-07-11", "2022-07-12", "2022-07-13", "2022-07-14", "2022-07-15", "2022-07-16", "2022-07-17", "2022-07-18", "2022-07-19", "2022-07-20", "2022-07-21", "2022-07-22", "2022-07-23"]
+                              },
+                              yAxis: {
+                                        type: 'value',
+                                        axisLabel: {
+                                                  formatter: '{value} '
+                                        }
+                              },
+
+                              series: [
+                                        {
+                                                  name: 'Var',
+                                                  type: 'line',
+                                                  smooth: 0.6,
+                                                  data: [0.1548193323, 0.1846773168, 0.1863014437, 0.1907409773, 0.2226692889, 0.1712971789, 0.1629683812, 0.1728501663, 0.1555209092, 0.1374289291, 0.395961005, 0.2079703158, 0.0915347737, 0.1973335412, 0.1923009841, 0.3419045202, 0.2106423469, 0.2006489043, 0.1643775332, 0.1921350937, 0.2013241867, 0.2185195138, 0.2004268478, 0.2033863565, 0.1926481346, 0.2045150288, 0.1925924952, 0.1970875128, 0.213131587, 0.2140128599, 0.2124021764, 0.2147706021, 0.2143594508, 0.2224949056, 0.1898433923, 0.198914999, 0.1804761048, 0.1937387608, 0.1893372624, 0.1933531284, 0.1518368951, 0.1446030721, 0.1631171021, 0.1571145828, 0.1528284533, 0.1676518443, 0.1837086385, 0.1836199186, 0.1605874202, 0.1368389351, 0.1559270395, 0.1690347226, 0.1817175011, 0.2005442778, 0.1711265084, 0.1805642597, 0.1773115999, 0.2043041799, 0.2029570734, 0.1957204505, 0.2003442643, 0.1967505185, 0.2035882378, 0.209325956, 0.1923359715, 0.1881997162, 0.1760205188],
+
+
+                                        },
+                                        {
+                                                  name: 'Mean',
+                                                  type: 'line',
+                                                  smooth: 0.6,
+                                                  markLine: {
+                                                            itemStyle: {
+                                                                      color: 'rgba(255, 0, 0, 0.4)'
+                                                            },
+                                                            symbol: ['none', 'none'],
+                                                            label: { show: false },
+                                                            data: [{ xAxis: "2022-05-18" }, { xAxis: "2022-05-22" }, { xAxis: "2022-05-28" }, { xAxis: "2022-05-30" }]
+                                                  },
+                                                  data: [0.0634142857, -0.0321748087, -0.0401337474, -0.0225759671, -0.2362090909, -0.0432243771, -0.0212428809, -0.0206429097, -0.0184347257, 0.0130795455, 0.10495, 0.007074097, -0.3514833333, -0.0015271533, -0.0037056299, 0.097075, 0.01539448, -0.0032581128, 0.0037328822, -0.0030669537, 0.0075209279, -0.0043962069, 0.01252588, 0.0113594371, -0.0012061556, 0.0108667738, 0.0280797758, -0.0223266508, -0.043468234, -0.048248614, -0.0139563596, -0.0132128866, -0.029251001, -0.0267585646, -0.0041526212, -0.0039795111, -0.0116700251, -0.0012184855, 0.0219320433, -0.0084384142, 0.0034760298, -0.0296393799, -0.0054650381, 0.0053978723, -0.0011676227, 0.0019369282, -0.0354403323, -0.0313807103, -0.0102542574, -0.0127444565, 0.0009605383, -0.029326211, -0.032091143, -0.0241571057, -0.0068526924, -0.0085569198, -0.0242943488, -0.0175922257, -0.0092103109, -0.0433019157, -0.0169220495, -0.0254952522, -0.0387115622, -0.0357448232, -0.028132459, -0.0203029486, -0.1134410102],
+                                                  markArea: {
+                                                            itemStyle: {
+                                                                      color: 'rgba(255, 173, 177, 0.4)'
+                                                            },
+                                                            data: [
+                                                                      [
+                                                                                {
+                                                                                          name: 'Cases in America',
+                                                                                          xAxis: "2022-05-18"
+                                                                                },
+                                                                                {
+                                                                                          xAxis: "2022-05-22"
+                                                                                }
+                                                                      ],
+                                                                      [
+                                                                                {
+                                                                                          name: 'Statement of WHO',
+                                                                                          xAxis: "2022-05-28"
+                                                                                },
+                                                                                {
+                                                                                          xAxis: "2022-05-30"
+                                                                                }
+                                                                      ]
+                                                            ]
+                                                  }
+                                        }
+
+
+
+                              ],
+                    };
+
+                    if (option && typeof option === 'object') {
+                              myChart.setOption(option);
+                    }
+
+                    window.addEventListener('resize', myChart.resize);
+          </script>
+</body>
+
+</html>
