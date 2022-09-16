@@ -1,9 +1,9 @@
 import pandas as pd
 
 # read dataSet
-case = pd.read_csv("../Dataset/cases/Monkey_Pox_Cases_Worldwide.csv")
-case_timeline = pd.read_csv("../Dataset/cases/Worldwide_Case_Detection_Timeline.csv")
-case_country = pd.read_csv("../Dataset/cases/Daily_Country_Wise_Confirmed_Cases.csv")
+case = pd.read_csv("../../Dataset/cases/Monkey_Pox_Cases_Worldwide.csv")
+case_timeline = pd.read_csv("../../Dataset/cases/Worldwide_Case_Detection_Timeline.csv")
+case_country = pd.read_csv("../../Dataset/cases/Daily_Country_Wise_Confirmed_Cases.csv")
 
 # print basic information
 print(f"Summary of Case Dataset :")
